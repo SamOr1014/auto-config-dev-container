@@ -7,6 +7,8 @@
       - "3000:3000"
     volumes:
       - ..:/workspaces/app:cached
+      - ~/.ssh:/root/.ssh:ro
+      - ~/.gitconfig:/root/.gitconfig:ro
     environment:
       - NVM_DIR=/root/.nvm
       - PYENV_ROOT=/root/.pyenv

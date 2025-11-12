@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ..:/workspaces/app:cached
+    environment:
+      - NVM_DIR=/root/.nvm
+      - PYENV_ROOT=/root/.pyenv
+    command: bash

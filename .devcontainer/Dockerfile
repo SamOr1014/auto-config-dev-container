@@ -37,9 +37,6 @@ RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | b
     && nvm install --lts \
     && nvm use --lts \
     && nvm alias default 'lts/*'
-ENV NODE_PATH $NVM_DIR/versions/node/$(ls $NVM_DIR/versions/node/)/lib/node_modules
-ENV PATH $NVM_DIR/versions/node/$(ls $NVM_DIR/versions/node/)/bin:$PATH
-
 
 # Install pyenv and Python 3.12.0
 RUN git clone https://github.com/pyenv/pyenv.git /root/.pyenv \
@@ -48,5 +45,4 @@ RUN git clone https://github.com/pyenv/pyenv.git /root/.pyenv \
 ENV PYENV_ROOT /root/.pyenv
 ENV PATH $PYENV_ROOT/bin:$PATH
 RUN echo 'eval "$(pyenv init -)"' >> /root/.bashrc
-
 CMD ["bash"]

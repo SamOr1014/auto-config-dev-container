@@ -1,5 +1,4 @@
-version: '3.8'
-services:
+  services:
   dev:
     build:
       context: .
@@ -11,4 +10,4 @@ services:
     environment:
       - NVM_DIR=/root/.nvm
       - PYENV_ROOT=/root/.pyenv
-    command: bash
+    command: sleep infinity

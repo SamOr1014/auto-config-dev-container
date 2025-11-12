@@ -1,7 +1,8 @@
 {
 	"name": "Base Dev Container",
-	"dockerComposeFile": "docker-compose.yml",
+	"dockerComposeFile": "./docker-compose.yml",
 	"service": "dev",
+	"workspaceFolder": "/workspaces/app",
 	"customizations": {
 		"vscode": {
 			"settings": {},
@@ -13,5 +14,5 @@
 		}
 	},
 	"forwardPorts": [3000],
-	"postCreateCommand": "if [ -f /workspaces/$(basename $(pwd))/package.json ]; then npm install; fi && for req in /workspaces/$(basename $(pwd))/requirements*.txt; do [ -f \"$req\" ] && pip install -r \"$req\"; done"
+	"postCreateCommand": "if [ -f /workspaces/app/package.json ]; then npm install; fi && for req in /workspaces/app/requirements*.txt; do [ -f \"$req\" ] && pip install -r \"$req\"; done"
 }

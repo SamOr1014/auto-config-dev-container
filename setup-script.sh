@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 # Script to copy .devcontainer to user's home directory and update shell rc file
 
@@ -19,8 +19,14 @@ fi
 DEVCONTAINER_LINE="# Added by mac-setup-script: alias for devcontainer setup"
 DEVCONTAINER_ALIAS_LINE="alias configDevContainer='bash ~/.devcontainer/setup_devcontainer.sh'"
 
-# Detect default shell
-DEFAULT_SHELL=$(dscl . -read /Users/$USER UserShell | awk '{print $2}')
+# Detect default shell (works on macOS and Linux)
+if command -v dscl >/dev/null 2>&1; then
+	DEFAULT_SHELL=$(dscl . -read /Users/$USER UserShell | awk '{print $2}')
+elif command -v getent >/dev/null 2>&1; then
+	DEFAULT_SHELL=$(getent passwd "$USER" | cut -d: -f7)
+else
+	DEFAULT_SHELL="$SHELL"
+fi
 
 if [[ "$DEFAULT_SHELL" == *"zsh" ]]; then
 	RC_FILE="$HOME/.zshrc"
